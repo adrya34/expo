@@ -341,7 +341,7 @@ class Kernel : KernelInterface() {
       return reactRootView
     }
   private val kernelLaunchOptions = bundleOf(
-   "exp" to Bundle(),
+    "exp" to Bundle()
   )
   private val jsExecutorFactory: JavaScriptExecutorFactory
     get() {
