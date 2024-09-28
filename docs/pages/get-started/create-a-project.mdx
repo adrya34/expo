@@ -1,24 +1,34 @@
----
-title: Create a project
-description: Learn how to create a new Expo project.
-hideTOC: true
----
+---import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
-import { Terminal } from '~/ui/components/Snippet';
+// Importez vos composants ici
+import SignUpScreen from './screens/SignUpScreen';
+import HomeScreen from './screens/HomeScreen';
+import GroupsScreen from './screens/GroupsScreen';
+import AdryaAssistantScreen from './screens/AdryaAssistantScreen';
 
-System requirements:
+const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
 
-- [Node.js (LTS)](https://nodejs.org/en/).
-- macOS, Windows (Powershell and [WSL 2](https://expo.fyi/wsl)), and Linux are supported.
+function MainDrawer() {
+  return (
+    <Drawer.Navigator>
+      <Drawer.Screen name="Home" component={HomeScreen} />
+      <Drawer.Screen name="Groups" component={GroupsScreen} />
+      <Drawer.Screen name="Adrya Assistant" component={AdryaAssistantScreen} />
+    </Drawer.Navigator>
+  );
+}
 
-We recommend starting with the default project created by `create-expo-app`. The default project includes example code to help you get started.
-
-To create a new project, run the following command:
-
-<Terminal cmd={['$ npx create-expo-app@latest']} />
-
-> You can choose a different template by adding the [`--template` option](/more/create-expo/#--template).
-
-## Next step
-
-You have a project. Now it's time to set up your development environment so that you can start developing.
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="SignUp" component={SignUpScreen} />
+        <Stack.Screen name="Main" component={MainDrawer} options={{ headerShown: false }} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
